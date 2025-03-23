@@ -41,6 +41,7 @@
             openFileDialog1 = new OpenFileDialog();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
+            saveFileDialog1 = new SaveFileDialog();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -52,7 +53,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, dIPToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1164, 42);
+            menuStrip1.Size = new Size(1164, 40);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -60,27 +61,28 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, saveToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 38);
+            fileToolStripMenuItem.Size = new Size(71, 36);
             fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(206, 44);
+            openToolStripMenuItem.Size = new Size(359, 44);
             openToolStripMenuItem.Text = "Open";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(206, 44);
+            saveToolStripMenuItem.Size = new Size(359, 44);
             saveToolStripMenuItem.Text = "Save";
+            saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // dIPToolStripMenuItem
             // 
             dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem, mirrorToolStripMenuItem, mirrorYToolStripMenuItem });
             dIPToolStripMenuItem.Name = "dIPToolStripMenuItem";
-            dIPToolStripMenuItem.Size = new Size(70, 38);
+            dIPToolStripMenuItem.Size = new Size(70, 36);
             dIPToolStripMenuItem.Text = "DIP";
             // 
             // pixelCopyToolStripMenuItem
@@ -138,6 +140,10 @@
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
+            // saveFileDialog1
+            // 
+            saveFileDialog1.FileOk += saveFileDialog1_FileOk;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -173,5 +179,6 @@
         private OpenFileDialog openFileDialog1;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
+        private SaveFileDialog saveFileDialog1;
     }
 }

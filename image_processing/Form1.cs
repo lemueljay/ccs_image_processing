@@ -46,5 +46,15 @@ namespace image_processing
             }
             pictureBox2.Image = processed;
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            processed.Save(saveFileDialog1.FileName);
+        }
     }
 }
