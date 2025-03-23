@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace image_processing
 {
@@ -117,5 +118,35 @@ namespace image_processing
             }
             return output;
         }
+
+        public static Bitmap Subtract(Bitmap imageB, Bitmap imageA)
+        {
+            Bitmap resultImage = new Bitmap(imageB.Width, imageB.Height);
+            Color mygreen = Color.FromArgb(0, 0, 255);
+            int greygreen = (mygreen.R + mygreen.G + mygreen.B) / 3;
+            int threshold = 5;
+
+            for (int x = 0; x < imageB.Width; x++)
+            {
+                for (int y = 0; y < imageB.Height; y++)
+                {
+                    Color pixel = imageB.GetPixel(x, y);
+                    Color backpixel = imageA.GetPixel(x, y);
+                    int grey = (pixel.R + pixel.G + pixel.B) / 3;
+                    int subtractvalue = Math.Abs(grey - greygreen);
+                    if (subtractvalue < threshold)
+                    {
+                        resultImage.SetPixel(x, y, backpixel);
+                    }
+                    else
+                    {
+                        resultImage.SetPixel(x, y, pixel);
+                    }
+                }
+            }
+
+            return resultImage;
+        }
+
     }
 }
