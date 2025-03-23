@@ -40,6 +40,7 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             saveFileDialog1 = new SaveFileDialog();
+            histogramToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -78,7 +79,7 @@
             // 
             // dIPToolStripMenuItem
             // 
-            dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem });
+            dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem, histogramToolStripMenuItem });
             dIPToolStripMenuItem.Name = "dIPToolStripMenuItem";
             dIPToolStripMenuItem.Size = new Size(70, 38);
             dIPToolStripMenuItem.Text = "DIP";
@@ -131,6 +132,13 @@
             // 
             saveFileDialog1.FileOk += saveFileDialog1_FileOk;
             // 
+            // histogramToolStripMenuItem
+            // 
+            histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
+            histogramToolStripMenuItem.Size = new Size(359, 44);
+            histogramToolStripMenuItem.Text = "Histogram";
+            histogramToolStripMenuItem.Click += histogramToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -165,5 +173,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private SaveFileDialog saveFileDialog1;
+        private ToolStripMenuItem histogramToolStripMenuItem;
     }
 }
