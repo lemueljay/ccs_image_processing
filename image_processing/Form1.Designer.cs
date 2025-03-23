@@ -36,8 +36,6 @@
             pixelCopyToolStripMenuItem = new ToolStripMenuItem();
             greyscaleToolStripMenuItem = new ToolStripMenuItem();
             invertToolStripMenuItem = new ToolStripMenuItem();
-            mirrorToolStripMenuItem = new ToolStripMenuItem();
-            mirrorYToolStripMenuItem = new ToolStripMenuItem();
             openFileDialog1 = new OpenFileDialog();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -80,7 +78,7 @@
             // 
             // dIPToolStripMenuItem
             // 
-            dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem, mirrorToolStripMenuItem, mirrorYToolStripMenuItem });
+            dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem });
             dIPToolStripMenuItem.Name = "dIPToolStripMenuItem";
             dIPToolStripMenuItem.Size = new Size(70, 38);
             dIPToolStripMenuItem.Text = "DIP";
@@ -105,19 +103,6 @@
             invertToolStripMenuItem.Size = new Size(359, 44);
             invertToolStripMenuItem.Text = "Invert";
             invertToolStripMenuItem.Click += invertToolStripMenuItem_Click;
-            // 
-            // mirrorToolStripMenuItem
-            // 
-            mirrorToolStripMenuItem.Name = "mirrorToolStripMenuItem";
-            mirrorToolStripMenuItem.Size = new Size(359, 44);
-            mirrorToolStripMenuItem.Text = "Mirror X";
-            mirrorToolStripMenuItem.Click += mirrorToolStripMenuItem_Click;
-            // 
-            // mirrorYToolStripMenuItem
-            // 
-            mirrorYToolStripMenuItem.Name = "mirrorYToolStripMenuItem";
-            mirrorYToolStripMenuItem.Size = new Size(359, 44);
-            mirrorYToolStripMenuItem.Text = "Mirror Y";
             // 
             // openFileDialog1
             // 
@@ -176,8 +161,6 @@
         private ToolStripMenuItem pixelCopyToolStripMenuItem;
         private ToolStripMenuItem greyscaleToolStripMenuItem;
         private ToolStripMenuItem invertToolStripMenuItem;
-        private ToolStripMenuItem mirrorToolStripMenuItem;
-        private ToolStripMenuItem mirrorYToolStripMenuItem;
         private OpenFileDialog openFileDialog1;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
