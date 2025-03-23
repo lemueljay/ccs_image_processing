@@ -1,0 +1,7 @@
+# Ignore local Visual Studio/VSCode settings and build artifacts
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+bin/
+obj/
