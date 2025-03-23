@@ -53,7 +53,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, dIPToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1164, 40);
+            menuStrip1.Size = new Size(1164, 42);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -61,20 +61,20 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, saveToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 36);
+            fileToolStripMenuItem.Size = new Size(71, 38);
             fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(359, 44);
+            openToolStripMenuItem.Size = new Size(206, 44);
             openToolStripMenuItem.Text = "Open";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(359, 44);
+            saveToolStripMenuItem.Size = new Size(206, 44);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
@@ -82,39 +82,41 @@
             // 
             dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem, mirrorToolStripMenuItem, mirrorYToolStripMenuItem });
             dIPToolStripMenuItem.Name = "dIPToolStripMenuItem";
-            dIPToolStripMenuItem.Size = new Size(70, 36);
+            dIPToolStripMenuItem.Size = new Size(70, 38);
             dIPToolStripMenuItem.Text = "DIP";
             // 
             // pixelCopyToolStripMenuItem
             // 
             pixelCopyToolStripMenuItem.Name = "pixelCopyToolStripMenuItem";
-            pixelCopyToolStripMenuItem.Size = new Size(258, 44);
+            pixelCopyToolStripMenuItem.Size = new Size(359, 44);
             pixelCopyToolStripMenuItem.Text = "Pixel Copy";
             pixelCopyToolStripMenuItem.Click += pixelCopyToolStripMenuItem_Click;
             // 
             // greyscaleToolStripMenuItem
             // 
             greyscaleToolStripMenuItem.Name = "greyscaleToolStripMenuItem";
-            greyscaleToolStripMenuItem.Size = new Size(258, 44);
+            greyscaleToolStripMenuItem.Size = new Size(359, 44);
             greyscaleToolStripMenuItem.Text = "Greyscale";
+            greyscaleToolStripMenuItem.Click += greyscaleToolStripMenuItem_Click;
             // 
             // invertToolStripMenuItem
             // 
             invertToolStripMenuItem.Name = "invertToolStripMenuItem";
-            invertToolStripMenuItem.Size = new Size(258, 44);
+            invertToolStripMenuItem.Size = new Size(359, 44);
             invertToolStripMenuItem.Text = "Invert";
+            invertToolStripMenuItem.Click += invertToolStripMenuItem_Click;
             // 
             // mirrorToolStripMenuItem
             // 
             mirrorToolStripMenuItem.Name = "mirrorToolStripMenuItem";
-            mirrorToolStripMenuItem.Size = new Size(258, 44);
+            mirrorToolStripMenuItem.Size = new Size(359, 44);
             mirrorToolStripMenuItem.Text = "Mirror X";
             mirrorToolStripMenuItem.Click += mirrorToolStripMenuItem_Click;
             // 
             // mirrorYToolStripMenuItem
             // 
             mirrorYToolStripMenuItem.Name = "mirrorYToolStripMenuItem";
-            mirrorYToolStripMenuItem.Size = new Size(258, 44);
+            mirrorYToolStripMenuItem.Size = new Size(359, 44);
             mirrorYToolStripMenuItem.Text = "Mirror Y";
             // 
             // openFileDialog1
