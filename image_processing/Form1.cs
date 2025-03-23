@@ -42,89 +42,36 @@ namespace image_processing
             processed.Save(saveFileDialog1.FileName);
         }
 
+        // BasicDIP functions
+
         private void pixelCopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            processed = new Bitmap(loaded.Width, loaded.Height);
-            for (int x = 0; x < loaded.Width; x++)
-            {
-                for (int y = 0; y < loaded.Height; y++)
-                {
-                    Color pixel = loaded.GetPixel(x, y);
-                    processed.SetPixel(x, y, pixel);
-                }
-            }
+            processed = BasicDIP.PixelCopy(loaded);
             pictureBox2.Image = processed;
         }
 
         private void greyscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            processed = new Bitmap(loaded.Width, loaded.Height);
-            for (int x = 0; x < loaded.Width; x++)
-            {
-                for (int y = 0; y < loaded.Height; y++)
-                {
-                    Color pixel = loaded.GetPixel(x, y);
-                    int grey = (pixel.R + pixel.G + pixel.B) / 3;
-                    processed.SetPixel(x, y, Color.FromArgb(grey, grey, grey));
-                }
-            }
+            processed = BasicDIP.Greyscale(loaded);
             pictureBox2.Image = processed;
         }
 
         private void invertToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            processed = new Bitmap(loaded.Width, loaded.Height);
-            for (int x = 0; x < loaded.Width; x++)
-            {
-                for (int y = 0; y < loaded.Height; y++)
-                {
-                    Color p = loaded.GetPixel(x, y);
-                    processed.SetPixel(x, y, Color.FromArgb(255 - p.R, 255 - p.G, 255 - p.B));
-                }
-            }
+            processed = BasicDIP.Invert(loaded);
             pictureBox2.Image = processed;
-        }
-
-        public static void hist(ref Bitmap a, ref Bitmap b)
-        {
-            int width = a.Width;
-            int height = a.Height;
-            int[] histdata = new int[256];
-
-            // Convert to greyscale and compute histogram
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    Color sample = a.GetPixel(x, y);
-                    byte graydata = (byte)((sample.R + sample.G + sample.B) / 3);
-                    histdata[graydata]++;
-                }
-            }
-
-            b = new Bitmap(256, 800);
-            for (int x = 0; x < 256; x++)
-            {
-                for (int y = 0; y < 800; y++)
-                {
-                    b.SetPixel(x, y, Color.White);
-                }
-            }
-
-            // Plot histogram based on histdata
-            for (int x = 0; x < 256; x++)
-            {
-                for (int y = 0; y < Math.Min(histdata[x] / 5, b.Height - 1); y++)
-                {
-                    b.SetPixel(x, (b.Height - 1) - y, Color.Black);
-                }
-            }
         }
 
         private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hist(ref loaded, ref processed);
+            processed = BasicDIP.Histogram(loaded);
+            pictureBox2.Image = processed;
+        }
+
+        private void sepiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            processed = BasicDIP.Sepia(loaded);
             pictureBox2.Image = processed;
         }
     }

@@ -36,11 +36,12 @@
             pixelCopyToolStripMenuItem = new ToolStripMenuItem();
             greyscaleToolStripMenuItem = new ToolStripMenuItem();
             invertToolStripMenuItem = new ToolStripMenuItem();
+            histogramToolStripMenuItem = new ToolStripMenuItem();
             openFileDialog1 = new OpenFileDialog();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             saveFileDialog1 = new SaveFileDialog();
-            histogramToolStripMenuItem = new ToolStripMenuItem();
+            sepiaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -66,20 +67,20 @@
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(206, 44);
+            openToolStripMenuItem.Size = new Size(359, 44);
             openToolStripMenuItem.Text = "Open";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(206, 44);
+            saveToolStripMenuItem.Size = new Size(359, 44);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // dIPToolStripMenuItem
             // 
-            dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem, histogramToolStripMenuItem });
+            dIPToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pixelCopyToolStripMenuItem, greyscaleToolStripMenuItem, invertToolStripMenuItem, histogramToolStripMenuItem, sepiaToolStripMenuItem });
             dIPToolStripMenuItem.Name = "dIPToolStripMenuItem";
             dIPToolStripMenuItem.Size = new Size(70, 38);
             dIPToolStripMenuItem.Text = "DIP";
@@ -104,6 +105,13 @@
             invertToolStripMenuItem.Size = new Size(359, 44);
             invertToolStripMenuItem.Text = "Invert";
             invertToolStripMenuItem.Click += invertToolStripMenuItem_Click;
+            // 
+            // histogramToolStripMenuItem
+            // 
+            histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
+            histogramToolStripMenuItem.Size = new Size(359, 44);
+            histogramToolStripMenuItem.Text = "Histogram";
+            histogramToolStripMenuItem.Click += histogramToolStripMenuItem_Click;
             // 
             // openFileDialog1
             // 
@@ -132,12 +140,12 @@
             // 
             saveFileDialog1.FileOk += saveFileDialog1_FileOk;
             // 
-            // histogramToolStripMenuItem
+            // sepiaToolStripMenuItem
             // 
-            histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
-            histogramToolStripMenuItem.Size = new Size(359, 44);
-            histogramToolStripMenuItem.Text = "Histogram";
-            histogramToolStripMenuItem.Click += histogramToolStripMenuItem_Click;
+            sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
+            sepiaToolStripMenuItem.Size = new Size(359, 44);
+            sepiaToolStripMenuItem.Text = "Sepia";
+            sepiaToolStripMenuItem.Click += sepiaToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -174,5 +182,6 @@
         private PictureBox pictureBox2;
         private SaveFileDialog saveFileDialog1;
         private ToolStripMenuItem histogramToolStripMenuItem;
+        private ToolStripMenuItem sepiaToolStripMenuItem;
     }
 }
