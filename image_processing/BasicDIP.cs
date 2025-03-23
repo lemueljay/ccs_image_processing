@@ -90,6 +90,13 @@ namespace image_processing
 
         public static Bitmap Sepia(Bitmap input)
         {
+            // Steps to convert to sepia (based on internet):
+            // 1. Apply the sepia formula to each pixel
+            // newR = 0.393 * R + 0.769 * G + 0.189 * B
+            // newG = 0.349 * R + 0.686 * G + 0.168 * B
+            // newB = 0.272 * R + 0.534 * G + 0.131 * B
+            // 2. Clamp the values to 255 to avoid overflow
+
             Bitmap output = new Bitmap(input.Width, input.Height);
             for (int x = 0; x < input.Width; x++)
             {
