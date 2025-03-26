@@ -45,6 +45,12 @@ jobs:
           (Get-Content $csproj) -replace '<Version>.*?</Version>', "<Version>${{ env.NEW_VERSION }}</Version>" | Set-Content $csproj
         shell: pwsh
 
+      - name: Debug Authentication
+        run: |
+          echo "Checking authentication..."
+          git remote -v
+          git config --list
+
       - name: Commit and Push Version Change
         run: |
           git config --global user.name "github-actions"
