@@ -39,6 +39,7 @@ namespace image_processing
             button4 = new Button();
             openFileDialog1 = new OpenFileDialog();
             openFileDialog2 = new OpenFileDialog();
+            button5 = new Button();
             ((ISupportInitialize)pictureBox1).BeginInit();
             ((ISupportInitialize)pictureBox2).BeginInit();
             ((ISupportInitialize)pictureBox3).BeginInit();
@@ -122,18 +123,29 @@ namespace image_processing
             openFileDialog2.FileName = "openFileDialog2";
             openFileDialog2.FileOk += openFileDialog2_FileOk;
             // 
+            // button5
+            // 
+            button5.Location = new Point(41, 522);
+            button5.Name = "button5";
+            button5.Size = new Size(325, 46);
+            button5.TabIndex = 7;
+            button5.Text = "live cam";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // SubtractForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1164, 641);
+            Controls.Add(button1);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
-            Controls.Add(button1);
             Name = "SubtractForm";
             Text = "SubtractForm";
             Load += SubtractForm_Load;
@@ -154,5 +166,6 @@ namespace image_processing
         private Button button4;
         private OpenFileDialog openFileDialog1;
         private OpenFileDialog openFileDialog2;
+        private Button button5;
     }
 }
