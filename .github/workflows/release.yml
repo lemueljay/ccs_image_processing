@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -79,4 +79,4 @@ jobs:
             🚀 Auto-released version ${{ env.NEW_VERSION }}
           files: publish/*.exe
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # Use GH_PAT instead of GITHUB_TOKEN
