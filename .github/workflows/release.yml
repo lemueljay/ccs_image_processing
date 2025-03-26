@@ -1,9 +1,9 @@
-name: Build and Release C# Application
+name: Auto Build and Release
 
 on:
   push:
-    tags:
-      - 'v*'  # Triggers only when a new version tag (e.g., v1.0.0) is pushed
+    branches:
+      - main  # Runs when code is pushed to `main`
 
 jobs:
   build:
@@ -12,40 +12,65 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x' # Adjust based on your project
+          dotnet-version: '8.0.x'  # Change if needed
 
-      - name: Restore dependencies
+      - name: Get Current Version
+        id: get_version
+        run: |
+          $csproj = Get-ChildItem -Path "**/*.csproj" | Select-Object -First 1
+          $version = (Get-Content $csproj | Select-String '<Version>(.*?)</Version>').Matches.Groups[1].Value
+          echo "CURRENT_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+        shell: pwsh
+
+      - name: Increment Version
+        id: increment_version
+        run: |
+          $version = "${{ env.CURRENT_VERSION }}"
+          $parts = $version -split "\."
+          $parts[2] = [int]$parts[2] + 1  # Increment patch version (e.g., 1.0.0 → 1.0.1)
+          $newVersion = "$($parts[0]).$($parts[1]).$($parts[2])"
+          echo "NEW_VERSION=$newVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+          echo "New Version: $newVersion"
+        shell: pwsh
+
+      - name: Update .csproj with New Version
+        run: |
+          $csproj = Get-ChildItem -Path "**/*.csproj" | Select-Object -First 1
+          (Get-Content $csproj) -replace '<Version>.*?</Version>', "<Version>${{ env.NEW_VERSION }}</Version>" | Set-Content $csproj
+        shell: pwsh
+
+      - name: Commit and Push Version Change
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Bump version to ${{ env.NEW_VERSION }}"
+          git tag "v${{ env.NEW_VERSION }}"
+          git push origin main --tags
+        shell: bash
+
+      - name: Restore Dependencies
         run: dotnet restore
 
-      - name: Build project
+      - name: Build Project
         run: dotnet build --configuration Release --no-restore
 
       - name: Publish as .exe
         run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
 
-      - name: Get Version from .csproj
-        id: get_version
-        run: |
-          $version = (Get-Content **/*.csproj | Select-String '<Version>(.*?)</Version>' | ForEach-Object { $_.Matches.Groups[1].Value })[0]
-          echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
-        shell: pwsh
-
-      - name: Create Release
-        id: create_release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
+          tag_name: "v${{ env.NEW_VERSION }}"
+          name: "Release v${{ env.NEW_VERSION }}"
           body: |
-            🚀 New Release: ${{ github.ref_name }}
-            - Auto-packaged .exe file
-            - Version: ${{ env.VERSION }}
-          draft: false
-          prerelease: false
+            🚀 Auto-released version ${{ env.NEW_VERSION }}
           files: publish/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
