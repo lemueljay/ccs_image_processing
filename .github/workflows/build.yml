@@ -1,9 +1,12 @@
-name: Build and Release C# Application
+name: Build and Package C# Application
 
 on:
   push:
-    tags:
-      - 'v*'  # Triggers only when a new version tag (e.g., v1.0.0) is pushed
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,7 +19,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x' # Adjust based on your project
+          dotnet-version: '8.0.x' # Change to your project's .NET version
 
       - name: Restore dependencies
         run: dotnet restore
@@ -24,28 +27,11 @@ jobs:
       - name: Build project
         run: dotnet build --configuration Release --no-restore
 
-      - name: Publish as .exe
+      - name: Publish project
         run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
 
-      - name: Get Version from .csproj
-        id: get_version
-        run: |
-          $version = (Get-Content **/*.csproj | Select-String '<Version>(.*?)</Version>' | ForEach-Object { $_.Matches.Groups[1].Value })[0]
-          echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
-        shell: pwsh
-
-      - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v2
+      - name: Archive .exe
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
-          body: |
-            🚀 New Release: ${{ github.ref_name }}
-            - Auto-packaged .exe file
-            - Version: ${{ env.VERSION }}
-          draft: false
-          prerelease: false
-          files: publish/*.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: packaged-exe
+          path: publish/*.exe
